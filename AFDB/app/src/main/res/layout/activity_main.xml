@@ -3,22 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#292E37"
     tools:context="com.example.john.afdb.MainActivity">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#D3D3D3"
-        android:text="Title"
-        android:layout_gravity="center||top"
-        android:textSize="40sp"
+        android:text="Android Firearm Database"
+        android:layout_gravity="top|center"
+        android:textSize="30sp"
         android:id="@+id/title"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:src="@drawable/heart"
         />
 
     <LinearLayout
@@ -27,62 +27,63 @@
         android:orientation="horizontal"
         android:layout_gravity="bottom"
         >
-
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:background="#D3D3D3"
+            android:background="@android:color/darker_gray"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Pistol"
             android:gravity="center"
             android:textSize="20sp"
             android:layout_marginRight="1dp"
+            android:src="@drawable/pistol"
+            android:clickable="true"
             />
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:src="@drawable/"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:background="#D3D3D3"
+            android:background="@android:color/darker_gray"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Rifle"
+            android:text="Revolver"
             android:gravity="center"
             android:textSize="20sp"
+            android:src="@drawable/revolver"
             android:layout_marginRight="1dp"
+            android:clickable="true"
 
             />
-
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:background="#D3D3D3"
+            android:background="@android:color/darker_gray"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Shotgun"
             android:gravity="center"
             android:textSize="20sp"
             android:layout_marginRight="1dp"
-            />
+            android:src="@drawable/shotguns"
+            android:clickable="true"
 
-        <TextView
+            />
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:background="#D3D3D3"
+            android:background="@android:color/darker_gray"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Revolver"
+            android:text="Rifle"
             android:gravity="center"
             android:textSize="20sp"
+            android:layout_marginRight="1dp"
+            android:src="@drawable/sniper"
+            android:clickable="true"
             />
     </LinearLayout>
 </FrameLayout>
