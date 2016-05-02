@@ -18,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
         ImageView rifleButton = (ImageView)findViewById(R.id.rifle);
         ImageView shotgunButton = (ImageView)findViewById(R.id.shotgun);
 
+        //HardCode DB
+        DatabaseHelper db = new DatabaseHelper(this);
+//        int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture
+        db.insert(1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
+        db.insert(2, "Smith and Wesson", "686", "Chrome", 1, ".357 Magnum", "12346", "revolver", 5, "");
+
+
+
 
         revolverButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("type", "revolver");
 
                 startActivity(i);
-
-
-
             }
         });
         pistolButton.setOnClickListener(new View.OnClickListener() {

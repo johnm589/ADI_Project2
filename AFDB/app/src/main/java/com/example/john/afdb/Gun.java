@@ -5,11 +5,11 @@ package com.example.john.afdb;
  */
 public class Gun {
 
-    int id;
+   String type;
     String brand, model;
 
-    public Gun(int id, String brand, String model) {
-        this.id = id;
+    public Gun(String type, String brand, String model) {
+        this.type = type;
         this.brand = brand;
         this.model = model;
     }
@@ -17,7 +17,7 @@ public class Gun {
     @Override
     public String toString() {
         return "Gun{" +
-                "id=" + id +
+                "type=" + type +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 '}';
