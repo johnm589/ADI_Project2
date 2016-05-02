@@ -1,11 +1,8 @@
 package com.example.john.afdb;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class ListActivity extends AppCompatActivity {
@@ -15,23 +12,28 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        final TextView title = (TextView) findViewById(R.id.title);
+        DatabaseHelper db = new DatabaseHelper(this);
+//        int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture
 
         Intent i = getIntent();
 
-        final String titleText = i.getStringExtra("type");
+        String titleText = i.getStringExtra("type").toString();
 
-        title.setText("This view will show " + titleText + "s!!");
+        Gun retrievedGame = db.getGunByType(titleText);
 
-        ListView listView = (ListView)findViewById(R.id.list_view);
+        ((TextView)findViewById(R.id.title2)).setText(retrievedGame.toString());
 
-        DatabaseHelper helper = DatabaseHelper.getInstance(ListActivity.this);
 
-        final Cursor cursor = helper.getExampleList();
 
-        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(ListActivity.this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
-
-        listView.setAdapter(simpleCursorAdapter);
+//        ListView listView = (ListView)findViewById(R.id.list_view);
+//
+//        DatabaseHelper helper = DatabaseHelper.getInstance(ListActivity.this);
+//
+//        final Cursor cursor = helper.getExampleList();
+//
+//        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(ListActivity.this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
+//
+//        listView.setAdapter(simpleCursorAdapter);
 
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -40,15 +40,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "(" +
                     COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_ITEM_BRAND + " TEXT, " +
-                    COL_ITEM_MODEL + " TEXT,  " +
+                    COL_ITEM_MODEL + " TEXT, " +
                     COL_ITEM_FINISH + " TEXT, " +
                     COL_ITEM_WOOD + " INTEGER, " +
                     COL_ITEM_CALIBER + " TEXT, " +
                     COL_ITEM_SERIAL + " TEXT, " +
-                    COL_ITEM_TYPE + " TEXT"+
+                    COL_ITEM_TYPE + " TEXT, " +
                     COL_ITEM_STAR + " INTEGER, "+
-                    COL_ITEM_PICTURE + " TEXT "+
-                    ")";
+                    COL_ITEM_PICTURE + " TEXT )";
 
     private static DatabaseHelper mInstance;
 
@@ -90,6 +89,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_TYPE, type);
         values.put(COL_ITEM_STAR, star);
         values.put(COL_ITEM_PICTURE, picture);
+
+        db.insert(GUN_LIST_TABLE_NAME, null, values);
     }
 
     public Cursor getExampleList(){
@@ -121,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Define the selection values. The ?'s in the selection
         // The number of values in the following array should equal the number of ? in the where clause
-        String[] selectionArgs = new String[]{ String.valueOf(type) };
+        String[] selectionArgs = new String[]{ type };
 
         // Make the query, getting the cursor object
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, projection, selection, selectionArgs, null, null, null, null);
@@ -129,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // With the cursor, create a new game object and return it
         cursor.moveToFirst();
 
-        String brand = cursor.getString( cursor.getColumnIndex(COL_ITEM_BRAND) );
+        String brand = cursor.getString( cursor.getColumnIndex(COL_ITEM_BRAND));
         String model = cursor.getString(cursor.getColumnIndex(COL_ITEM_MODEL));
 
 
