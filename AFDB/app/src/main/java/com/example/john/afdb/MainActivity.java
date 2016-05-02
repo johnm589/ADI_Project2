@@ -1,5 +1,6 @@
 package com.example.john.afdb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         revolverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("type", "revolver");
+
+                startActivity(i);
 
 
 
@@ -29,12 +34,20 @@ public class MainActivity extends AppCompatActivity {
         pistolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("type", "pistol");
+
+                startActivity(i);
 
 
             }
         });        rifleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("type", "rifle");
+
+                startActivity(i);
 
 
 
@@ -42,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
         });        shotgunButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("type", "shotgun");
 
-
+                startActivity(i);
             }
         });
 
