@@ -40,6 +40,7 @@
             android:layout_marginRight="1dp"
             android:src="@drawable/pistol"
             android:clickable="true"
+            android:id="@+id/pistol"
             />
         <ImageView
             android:layout_width="match_parent"
@@ -54,6 +55,7 @@
             android:src="@drawable/revolver"
             android:layout_marginRight="1dp"
             android:clickable="true"
+            android:id="@+id/revolver"
 
             />
         <ImageView
@@ -69,6 +71,7 @@
             android:layout_marginRight="1dp"
             android:src="@drawable/shotguns"
             android:clickable="true"
+            android:id="@+id/shotgun"
 
             />
         <ImageView
@@ -84,6 +87,7 @@
             android:layout_marginRight="1dp"
             android:src="@drawable/sniper"
             android:clickable="true"
+            android:id="@+id/rifle"
             />
     </LinearLayout>
 </FrameLayout>

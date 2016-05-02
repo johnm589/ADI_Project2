@@ -16,10 +16,10 @@ public class Gun {
 
     @Override
     public String toString() {
-        return "Game{" +
+        return "Gun{" +
                 "id=" + id +
-                ", ='" + brand + '\'' +
-                ", year='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
                 '}';
     }
 }
