@@ -21,10 +21,12 @@ public class MainActivity extends AppCompatActivity {
         //HardCode DB
         DatabaseHelper db = new DatabaseHelper(this);
 //        int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture
-        db.insert(1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
-        db.insert(2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
-        db.insert(3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
-        db.insert(4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
+//        db.insert(1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
+//        db.insert(2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
+//        db.insert(3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
+//        db.insert(4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
+//        db.insert(5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
+//        db.insert(6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
 
 
 

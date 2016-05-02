@@ -65,6 +65,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_GUN_LIST_TABLE);
+
+        insert(1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
+        insert(2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
+        insert(3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
+        insert(4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
+        insert(5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
+        insert(6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
     }
 
     @Override
@@ -108,38 +115,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Gun getGunByType(String type){
-        // Get a reference to the database
-        SQLiteDatabase db = getReadableDatabase();
+//    public Gun getGunByType(String type){
+//        // Get a reference to the database
+//        SQLiteDatabase db = getReadableDatabase();
+//
+//        // Define a projection, which tells the query to return only the columns mentioned
+//        // similar to "SELECT column1, column2, column3"
+//        String[] projection = new String[]{ COL_ITEM_TYPE, COL_ITEM_BRAND, COL_ITEM_MODEL };
+//
+//        // Define a selection, which defines the WHERE clause of the query (but not the values for it)
+//        // similar to "WHERE x < 23", only without the value; "WHERE x < ?"
+//        String selection = "type = ?";
+//
+//        // Define the selection values. The ?'s in the selection
+//        // The number of values in the following array should equal the number of ? in the where clause
+//        String[] selectionArgs = new String[]{ type };
+//
+//        // Make the query, getting the cursor object
+//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, projection, selection, selectionArgs, null, null, null, null);
+//
+//        // With the cursor, create a new game object and return it
+//        cursor.moveToFirst();
+//
+//        String brand = cursor.getString( cursor.getColumnIndex(COL_ITEM_BRAND));
+//        String model = cursor.getString(cursor.getColumnIndex(COL_ITEM_MODEL));
+//
+//
+//
+//        return new Gun(type, brand , model);
+//    }
 
-        // Define a projection, which tells the query to return only the columns mentioned
-        // similar to "SELECT column1, column2, column3"
-        String[] projection = new String[]{ COL_ITEM_TYPE, COL_ITEM_BRAND, COL_ITEM_MODEL };
 
-        // Define a selection, which defines the WHERE clause of the query (but not the values for it)
-        // similar to "WHERE x < 23", only without the value; "WHERE x < ?"
-        String selection = "type = ?";
+    public Cursor getGunByType(String query){
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        // Define the selection values. The ?'s in the selection
-        // The number of values in the following array should equal the number of ? in the where clause
-        String[] selectionArgs = new String[]{ type };
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
+                EXAMPLE_COLUMNS, // b. column names
+                COL_ITEM_TYPE + " LIKE ?", // c. selections
+                new String[]{ query }, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
 
-        // Make the query, getting the cursor object
-        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, projection, selection, selectionArgs, null, null, null, null);
-
-        // With the cursor, create a new game object and return it
-        cursor.moveToFirst();
-
-        String brand = cursor.getString( cursor.getColumnIndex(COL_ITEM_BRAND));
-        String model = cursor.getString(cursor.getColumnIndex(COL_ITEM_MODEL));
-
-
-
-        return new Gun(type, brand , model);
+        return cursor;
     }
-
-
-
 
 
 

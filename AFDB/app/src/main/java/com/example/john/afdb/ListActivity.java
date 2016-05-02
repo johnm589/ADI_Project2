@@ -1,11 +1,19 @@
 package com.example.john.afdb;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+
 
 public class ListActivity extends AppCompatActivity {
+    private ListView mGunListView;
+    private CursorAdapter mCursorAdapter;
+    private CursorAdapter mCursorAdapter2;
+    private DatabaseHelper mHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,21 +27,21 @@ public class ListActivity extends AppCompatActivity {
 
         String titleText = i.getStringExtra("type").toString();
 
-        Gun retrievedGame = db.getGunByType(titleText);
-
-        ((TextView)findViewById(R.id.title2)).setText(retrievedGame.toString());
+//        ((TextView)findViewById(R.id.title2)).setText(retrievedGame.toString());
 
 
 
-//        ListView listView = (ListView)findViewById(R.id.list_view);
-//
-//        DatabaseHelper helper = DatabaseHelper.getInstance(ListActivity.this);
-//
-//        final Cursor cursor = helper.getExampleList();
-//
-//        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(ListActivity.this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
-//
-//        listView.setAdapter(simpleCursorAdapter);
+        mGunListView = (ListView)findViewById(R.id.list_view);
+        mHelper = new DatabaseHelper(ListActivity.this);
+
+        Cursor cursor = mHelper.getGunByType(titleText);
+
+        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
+
+        mGunListView.setAdapter(mCursorAdapter);
+
+
+//        handleIntent(getIntent());
 
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
