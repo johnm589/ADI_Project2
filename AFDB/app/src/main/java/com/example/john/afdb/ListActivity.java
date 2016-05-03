@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 
 public class ListActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class ListActivity extends AppCompatActivity {
 
         String titleText = i.getStringExtra("type").toString();
 
-//        ((TextView)findViewById(R.id.title2)).setText(retrievedGame.toString());
+        ((TextView)findViewById(R.id.title2)).setText(titleText.toString().toUpperCase());
 
 
 

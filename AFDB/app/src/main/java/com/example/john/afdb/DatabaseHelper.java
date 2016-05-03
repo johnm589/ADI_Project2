@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = DatabaseHelper.class.getCanonicalName();
 
     private static final int DATABASE_VERSION = 3;
-    public static final String DATABASE_NAME = "Guns_DB";
+    public static final String DATABASE_NAME = "Guns_DB2";
     public static final String GUN_LIST_TABLE_NAME = "GUN_LIST";
 
     public static final String COL_ID = "_id";
@@ -64,14 +64,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+
         db.execSQL(CREATE_GUN_LIST_TABLE);
 
-        insert(1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
-        insert(2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
-        insert(3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
-        insert(4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
-        insert(5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
-        insert(6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
+        insert(db, 1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
+        insert(db, 2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
+        insert(db, 3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
+        insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
+        insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
+        insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
     }
 
     @Override
@@ -80,9 +82,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public void insert(int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
+    public void insert(SQLiteDatabase database, int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
         // Get a reference to the database
-        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteDatabase database = getWritableDatabase();
+
 
         // create a new content value to store values
         ContentValues values = new ContentValues();
@@ -97,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_STAR, star);
         values.put(COL_ITEM_PICTURE, picture);
 
-        db.insert(GUN_LIST_TABLE_NAME, null, values);
+        database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
 
     public Cursor getExampleList(){
@@ -147,6 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public Cursor getGunByType(String query){
+
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
@@ -204,7 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         // Define the selection, or the where
-        String selection =  COL_ID + " = ?";
+        String selection = COL_ID +" = ?";
 
         // Define the selection values. The ?'s in the selection
         // The number of values in the following array should equal the number of ? in the where clause
