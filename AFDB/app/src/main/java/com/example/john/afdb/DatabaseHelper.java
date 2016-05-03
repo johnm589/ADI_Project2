@@ -103,52 +103,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
 
-    public Cursor getExampleList(){
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-                EXAMPLE_COLUMNS, // b. column names
-                null, // c. selections
-                null, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
-        return cursor;
-    }
-
-//    public Gun getGunByType(String type){
-//        // Get a reference to the database
-//        SQLiteDatabase db = getReadableDatabase();
+//    public Cursor getExampleList(){
 //
-//        // Define a projection, which tells the query to return only the columns mentioned
-//        // similar to "SELECT column1, column2, column3"
-//        String[] projection = new String[]{ COL_ITEM_TYPE, COL_ITEM_BRAND, COL_ITEM_MODEL };
+//        SQLiteDatabase db = this.getReadableDatabase();
 //
-//        // Define a selection, which defines the WHERE clause of the query (but not the values for it)
-//        // similar to "WHERE x < 23", only without the value; "WHERE x < ?"
-//        String selection = "type = ?";
-//
-//        // Define the selection values. The ?'s in the selection
-//        // The number of values in the following array should equal the number of ? in the where clause
-//        String[] selectionArgs = new String[]{ type };
-//
-//        // Make the query, getting the cursor object
-//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, projection, selection, selectionArgs, null, null, null, null);
-//
-//        // With the cursor, create a new game object and return it
-//        cursor.moveToFirst();
-//
-//        String brand = cursor.getString( cursor.getColumnIndex(COL_ITEM_BRAND));
-//        String model = cursor.getString(cursor.getColumnIndex(COL_ITEM_MODEL));
-//
-//
-//
-//        return new Gun(type, brand , model);
+//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
+//                EXAMPLE_COLUMNS, // b. column names
+//                null, // c. selections
+//                null, // d. selections args
+//                null, // e. group by
+//                null, // f. having
+//                null, // g. order by
+//                null); // h. limit
+//        return cursor;
 //    }
-
-
     public Cursor getGunByType(String query){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -182,15 +150,104 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+    public String getCaliberById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_CALIBER},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
 
-    public String getDescriptionByType(String type){
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_CALIBER));
+        } else {
+            return "No Description Found";
+        }
+    }
+
+    public String getSerialById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_SERIAL},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_SERIAL));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public String getWoodById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_WOOD},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_WOOD));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public String getTypeById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_TYPE},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_TYPE));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public String getStarById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_STAR},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_STAR));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public String getBrandById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_BRAND},
-                COL_ITEM_TYPE+" = ?",
-                new String[]{String.valueOf(type)},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
                 null,
                 null,
                 null,
@@ -202,6 +259,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+    public String getModelById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_MODEL},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_MODEL));
+        } else {
+            return "No Description Found";
+        }
+    }
+
+
+
+//    public String getDescriptionByType(String type){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+//                new String[]{COL_ITEM_BRAND},
+//                COL_ITEM_TYPE+" = ?",
+//                new String[]{String.valueOf(type)},
+//                null,
+//                null,
+//                null,
+//                null);
+//
+//        if(cursor.moveToFirst()){
+//            return cursor.getString(cursor.getColumnIndex(COL_ITEM_BRAND));
+//        } else {
+//            return "No Description Found";
+//        }
+//    }
 
     public void delete(int id){
         // Get a reference to the database

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +12,190 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.john.afdb.DetailActivity">
-
-    <TextView
-        android:id="@+id/description_text"
+    tools:context="com.example.john.afdb.DetailActivity"
+    android:background="#292E37"
+    android:orientation="vertical"
+    >
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+        <TextView
+            android:id="@+id/brand_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="#D3D3D3"
+            android:text="Brand"
+            />
+        <TextView
+            android:id="@+id/model_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="36sp"
+            android:textColor="#D3D3D3"
+            android:layout_marginTop="10dp"
+            android:text="Model"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="#D3D3D3"
+            android:text="______________"
+            />
+    </LinearLayout>
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    >
+    <TextView
+        android:id="@+id/finish_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="#D3D3D3"
+        android:text="Finish:"
+        />
+    <TextView
+        android:id="@+id/finish_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="#D3D3D3"
+        android:layout_marginLeft="30dp"
+        android:text="Test"
+        android:layout_toRightOf="@+id/finish_tag"
+        />
 </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/caliber_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:text="Caliber:"
+            />
+        <TextView
+            android:id="@+id/caliber_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:layout_marginLeft="30dp"
+            android:text="Test"
+            android:layout_toRightOf="@+id/caliber_tag"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/serial_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:text="Serial #:"
+            />
+        <TextView
+            android:id="@+id/serial_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:layout_marginLeft="30dp"
+            android:text="Test"
+            android:layout_toRightOf="@+id/serial_tag"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/wood_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:text="Wood:"
+            />
+        <TextView
+            android:id="@+id/wood_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:layout_marginLeft="30dp"
+            android:text="Test"
+            android:layout_toRightOf="@+id/wood_tag"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/type_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:text="Type:"
+            />
+        <TextView
+            android:id="@+id/type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:layout_marginLeft="30dp"
+            android:text="Test"
+            android:layout_toRightOf="@+id/type_tag"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/rating_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:text="Rating:"
+            />
+        <TextView
+            android:id="@+id/rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#D3D3D3"
+            android:layout_marginLeft="30dp"
+            android:text="Test"
+            android:layout_toRightOf="@+id/rating_tag"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DELETE ENTRY"
+        android:background="@android:color/holo_red_light"
+        android:id="@+id/delete_button"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>
+</ScrollView>

@@ -39,7 +39,7 @@ public class ListActivity extends AppCompatActivity {
 
         final Cursor cursor = mHelper.getGunByType(titleText);
 
-        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
+        mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND, DatabaseHelper.COL_ITEM_MODEL},new int[]{android.R.id.text1, android.R.id.text2},0);
 
         mGunListView.setAdapter(mCursorAdapter);
 

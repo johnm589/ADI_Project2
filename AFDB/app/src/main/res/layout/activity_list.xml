@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.john.afdb.ListActivity"
     android:orientation="vertical"
+    android:background="#D3D3D3"
     >
     <TextView
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
         android:text="PlaceHolder"
         android:layout_marginBottom="20dp"
         android:textSize="30dp"
+        android:textColor="#292E37"
         android:textAlignment="center"
         />
 
