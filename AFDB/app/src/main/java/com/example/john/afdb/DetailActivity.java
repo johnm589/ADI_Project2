@@ -21,9 +21,9 @@ public class DetailActivity extends AppCompatActivity {
        final int id = getIntent().getIntExtra("id",-1);
 
         if(id >= 0){
-            String description = helper.getDescriptionById(id);
+            String finish = helper.getFinishById(id);
             TextView textView = (TextView)findViewById(R.id.description_text);
-            textView.setText(description);
+            textView.setText(finish);
         }
 
         textViewDetail.setOnLongClickListener(new View.OnLongClickListener() {

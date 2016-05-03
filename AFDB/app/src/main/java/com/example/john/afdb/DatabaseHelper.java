@@ -164,7 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
-    public String getDescriptionById(int id){
+    public String getFinishById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
@@ -218,6 +218,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(GUN_LIST_TABLE_NAME, selection, selectionArgs);
     }
 
+    //use this method to seach all by brand name
+    public Cursor searchAll(String query){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
+                EXAMPLE_COLUMNS, // b. column names
+                COL_ITEM_BRAND + " LIKE ?", // c. selections
+                new String[]{"%" + query + "%"}, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
+    }
 
 
 
