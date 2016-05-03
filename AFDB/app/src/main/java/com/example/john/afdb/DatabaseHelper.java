@@ -160,7 +160,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+    public String getDescriptionById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_FINISH},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_FINISH));
+        } else {
+            return "No Description Found";
+        }
+    }
 
 
     public String getDescriptionByType(String type){
@@ -180,6 +197,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return "No Description Found";
         }
+    }
+
+    public void delete(int id){
+        // Get a reference to the database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Define the selection, or the where
+        String selection =  COL_ID + " = ?";
+
+        // Define the selection values. The ?'s in the selection
+        // The number of values in the following array should equal the number of ? in the where clause
+        String[] selectionArgs = new String[]{ String.valueOf(id) };
+
+        // Delete everything that satisfies the selection
+        db.delete(GUN_LIST_TABLE_NAME, selection, selectionArgs);
     }
 
 

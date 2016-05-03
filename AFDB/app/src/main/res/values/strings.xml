@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">AFDB</string>
+
+    <string name="wood_prompt">Wood Furniture?</string>
+
+    <string-array name="wood_arrays">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="type_prompt">Type?</string>
+
+    <string-array name="type_arrays">
+        <item>Pistol</item>
+        <item>Revolver</item>
+        <item>Shotgun</item>
+        <item>Rifle</item>
+    </string-array>
+    <string name="star_prompt">Rating</string>
+
+    <string-array name="star_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

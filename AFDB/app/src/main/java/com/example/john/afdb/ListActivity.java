@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -34,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
         mGunListView = (ListView)findViewById(R.id.list_view);
         mHelper = new DatabaseHelper(ListActivity.this);
 
-        Cursor cursor = mHelper.getGunByType(titleText);
+        final Cursor cursor = mHelper.getGunByType(titleText);
 
         mCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,cursor,new String[]{DatabaseHelper.COL_ITEM_BRAND},new int[]{android.R.id.text1},0);
 
@@ -44,15 +46,15 @@ public class ListActivity extends AppCompatActivity {
 //        handleIntent(getIntent());
 
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-//                cursor.moveToPosition(position);
-//                intent.putExtra("id", cursor.getInt(cursor.getColumnIndex(ExampleSQLiteOpenHelper.COL_ID)));
-//                startActivity(intent);
-//            }
-//        });
+        mGunListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ListActivity.this, DetailActivity.class);
+                cursor.moveToPosition(position);
+                intent.putExtra("id", cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_ID)));
+                startActivity(intent);
+            }
+        });
 
 
 
