@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_STAR = "STAR";
     public static final String COL_ITEM_PICTURE = "PICTURE";
 
-    public static final String[] SHOPPING_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER,COL_ITEM_TYPE};
+    public static final String[] GUN_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER,COL_ITEM_TYPE};
 
     public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_TYPE,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER};
 
@@ -70,12 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_GUN_LIST_TABLE);
 
-        insert(db, 1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "");
-        insert(db, 2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "");
-        insert(db, 3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "");
-        insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "");
-        insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
-        insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "");
+        insert(db, 1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "colt");
+        insert(db, 2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "six86");
+        insert(db, 3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "mossberg500");
+        insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "winchester94");
+        insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "m9");
+        insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "mandp");
     }
 
     @Override
@@ -105,35 +105,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
 
-//    public Cursor getExampleList(){
-//
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-//                EXAMPLE_COLUMNS, // b. column names
-//                null, // c. selections
-//                null, // d. selections args
-//                null, // e. group by
-//                null, // f. having
-//                null, // g. order by
-//                null); // h. limit
-//        return cursor;
-//    }
-    public Cursor getGunByType(String query){
 
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-                SHOPPING_COLUMNS, // b. column names
-                COL_ITEM_TYPE + " LIKE ?", // c. selections
-                new String[]{ query }, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
-
-        return cursor;
-    }
     public String getFinishById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -261,15 +234,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
-
-    public Cursor getGunList(){
+    public Cursor getGunByType(String query){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-                EXAMPLE_COLUMNS, // b. column names
-                null, // c. selections
-                null, // d. selections args
+                GUN_COLUMNS, // b. column names
+                COL_ITEM_TYPE + " LIKE ?", // c. selections
+                new String[]{ query }, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
@@ -295,6 +267,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+    public String getPicById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_PICTURE},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_PICTURE));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public int getPic(String icon){
+        switch(icon){
+            case "m9":
+                return R.drawable.m9;
+            case "colt":
+                return R.drawable.colt;
+            case "mandp":
+                return R.drawable.mandp;
+            case "mossberg500":
+                return R.drawable.mossberg_500;
+            case "six86":
+                return R.drawable.six86;
+            case "winchester94":
+                return R.drawable.winchester_94;
+            default:
+                return 0;
+        }
+    }
 
     public void delete(int id){
         // Get a reference to the database
@@ -316,7 +324,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-                EXAMPLE_COLUMNS, // b. column names
+                GUN_COLUMNS, // b. column names
                  COL_ITEM_BRAND + " LIKE ?", // c. selections
                 new String[]{"%" + query + "%"}, // d. selections args
                 null, // e. group by
@@ -326,6 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
 
 
 

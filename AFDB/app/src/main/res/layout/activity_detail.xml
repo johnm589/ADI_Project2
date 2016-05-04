@@ -16,11 +16,15 @@
     android:background="#292E37"
     android:orientation="vertical"
     >
-    <LinearLayout
+
+
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
        >
+
         <TextView
             android:id="@+id/brand_text"
             android:layout_width="wrap_content"
@@ -29,6 +33,14 @@
             android:textColor="#D3D3D3"
             android:text="Brand"
             />
+<ImageView
+    android:layout_width="150sp"
+    android:layout_height="100sp"
+    android:layout_marginLeft="200dp"
+    android:src="@drawable/colt"
+    android:id="@+id/gun_pic"
+    />
+
         <TextView
             android:id="@+id/model_text"
             android:layout_width="wrap_content"
@@ -37,15 +49,21 @@
             android:textColor="#D3D3D3"
             android:layout_marginTop="10dp"
             android:text="Model"
+            android:layout_below="@+id/brand_text"
+
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="50sp"
             android:textColor="#D3D3D3"
             android:text="______________"
+            android:layout_below="@+id/brand_text"
+
             />
-    </LinearLayout>
+
+    </RelativeLayout>
 
 <RelativeLayout
     android:layout_width="wrap_content"

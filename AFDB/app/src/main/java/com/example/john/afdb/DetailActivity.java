@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
@@ -30,9 +31,11 @@ public class DetailActivity extends AppCompatActivity {
             String wood = helper.getWoodById(id);
 
             String caliber = helper.getCaliberById(id);
-            String serial = helper.getCaliberById(id);
+            String serial = helper.getSerialById(id);
             String type = helper.getTypeById(id);
             String star = helper.getStarById(id);
+            String pic  = helper.getPicById(id);
+            int i = helper.getPic(pic);
 
             TextView finishTextView = (TextView)findViewById(R.id.finish_text);
             finishTextView.setText(finish);
@@ -51,8 +54,26 @@ public class DetailActivity extends AppCompatActivity {
 
             TextView woodTextView = (TextView)findViewById(R.id.wood_text);
             TextView starTextView = (TextView)findViewById(R.id.rating_text);
-            starTextView.setText(star);
+            ImageView gunImage = (ImageView) findViewById(R.id.gun_pic);
 
+//            String test = "R.drawable.m9";
+//
+//            int test1 = Integer.parseInt(test);
+
+//            File imgFile = new  File("app/res/drawable/pistol.png");
+
+//            if(imgFile.exists()){
+//
+//                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+//
+//                gunImage.setImageBitmap(myBitmap);
+//
+//            }
+
+            gunImage.setImageResource(i);
+
+
+            starTextView.setText(star);
 
             if (wood.equals("0")){
                 woodTextView.setText("No Wood");
