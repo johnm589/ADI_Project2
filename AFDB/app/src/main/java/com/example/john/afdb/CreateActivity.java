@@ -15,9 +15,15 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        final DatabaseHelper helper = DatabaseHelper.getInstance(CreateActivity.this);
+
+
         EditText idEdit = (EditText)findViewById(R.id.idET);
         EditText brandEdit = (EditText)findViewById(R.id.brandET);
+        final String mTextBrandEdit = brandEdit.getText().toString();
         EditText modelEdit = (EditText)findViewById(R.id.modelET);
+        final String mTextModelEdit = modelEdit.getText().toString();
+
         EditText finishEdit = (EditText)findViewById(R.id.finishET);
 
         Spinner woodSpin = (Spinner)findViewById(R.id.woodET);
@@ -40,6 +46,9 @@ public class CreateActivity extends AppCompatActivity {
                 String text = typeSpin.getSelectedItem().toString();
 
                 Toast.makeText(CreateActivity.this, text, Toast.LENGTH_SHORT).show();
+
+                helper.addItem("hand","cannon","blued",0,"big","1234","pistol",5,"");
+
 
             }
         });

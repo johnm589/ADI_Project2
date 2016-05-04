@@ -104,6 +104,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
+//
+
+    public long addItem(String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
+
+        ContentValues values = new ContentValues();
+
+        values.put(COL_ITEM_BRAND, brand);
+        values.put(COL_ITEM_MODEL, model);
+        values.put(COL_ITEM_FINISH, finish);
+        values.put(COL_ITEM_WOOD, wood);
+        values.put(COL_ITEM_CALIBER, caliber);
+        values.put(COL_ITEM_SERIAL, serial);
+        values.put(COL_ITEM_STAR, star);
+        values.put(COL_ITEM_PICTURE, picture);
+        values.put(COL_ITEM_TYPE, type);
+
+        SQLiteDatabase database = getWritableDatabase();
+
+        long returnId = database.insert(GUN_LIST_TABLE_NAME, null, values);
+
+        database.close();
+
+        return returnId;
+    }
 
 
 
@@ -272,7 +296,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
                 new String[]{COL_ITEM_PICTURE},
-                COL_ID+" = ?",
+                COL_ID + " = ?",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
@@ -285,6 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public int getPic(String icon){
         switch(icon){
             case "m9":
