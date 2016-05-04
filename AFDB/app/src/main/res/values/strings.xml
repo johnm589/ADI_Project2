@@ -16,6 +16,7 @@
         <item>Rifle</item>
     </string-array>
     <string name="star_prompt">Rating</string>
+    <string name="search_hint">John</string>
 
     <string-array name="star_arrays">
         <item>1</item>

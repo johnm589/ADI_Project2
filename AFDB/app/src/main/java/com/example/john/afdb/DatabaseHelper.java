@@ -28,7 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_STAR = "STAR";
     public static final String COL_ITEM_PICTURE = "PICTURE";
 
-    public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_TYPE,COL_ITEM_BRAND,COL_ITEM_MODEL};
+    public static final String[] SHOPPING_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER,COL_ITEM_TYPE};
+
+    public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_TYPE,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER};
 
 //    public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_FINISH,COL_ITEM_WOOD,COL_ITEM_CALIBER,COL_ITEM_SERIAL,COL_ITEM_TYPE,COL_ITEM_STAR,COL_ITEM_PICTURE};
     //"CREATE TABLE guns ( id INTEGER PRIMARY KEY, brand TEXT, model TEXT, finish TEXT, wood INTEGER,
@@ -122,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
-                EXAMPLE_COLUMNS, // b. column names
+                SHOPPING_COLUMNS, // b. column names
                 COL_ITEM_TYPE + " LIKE ?", // c. selections
                 new String[]{ query }, // d. selections args
                 null, // e. group by
@@ -259,6 +261,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
+    public Cursor getGunList(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
+                EXAMPLE_COLUMNS, // b. column names
+                null, // c. selections
+                null, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
+    }
     public String getModelById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -277,27 +295,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
-
-
-
-//    public String getDescriptionByType(String type){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
-//                new String[]{COL_ITEM_BRAND},
-//                COL_ITEM_TYPE+" = ?",
-//                new String[]{String.valueOf(type)},
-//                null,
-//                null,
-//                null,
-//                null);
-//
-//        if(cursor.moveToFirst()){
-//            return cursor.getString(cursor.getColumnIndex(COL_ITEM_BRAND));
-//        } else {
-//            return "No Description Found";
-//        }
-//    }
 
     public void delete(int id){
         // Get a reference to the database
@@ -320,7 +317,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
                 EXAMPLE_COLUMNS, // b. column names
-                COL_ITEM_BRAND + " LIKE ?", // c. selections
+                 COL_ITEM_BRAND + " LIKE ?", // c. selections
                 new String[]{"%" + query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having

@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title2"
-        android:text="PlaceHolder"
+        android:text="Search Results"
         android:layout_marginBottom="20dp"
         android:textSize="30dp"
         android:textColor="#292E37"
