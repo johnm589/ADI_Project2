@@ -15,6 +15,18 @@
         <item>shotgun</item>
         <item>rifle</item>
     </string-array>
+
+    <string name="sound_prompt">Sound?</string>
+
+    <string-array name="sound_arrays">
+        <item>pistol</item>
+        <item>revolver</item>
+        <item>shotgun</item>
+        <item>rifle</item>
+        <item>pew</item>
+
+
+    </string-array>
     <string name="star_prompt">Rating</string>
     <string name="search_hint">John</string>
 

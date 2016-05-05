@@ -52,8 +52,7 @@ public class CreateActivity extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                // Error occurred while creating the File
-
+                Toast.makeText(CreateActivity.this, "No SD card on this device", Toast.LENGTH_SHORT).show();
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -115,8 +114,6 @@ public class CreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(CreateActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-
                 dispatchTakePictureIntent();
 
             }
@@ -145,6 +142,10 @@ public class CreateActivity extends AppCompatActivity {
 //
                 String typeText = typeSpin.getSelectedItem().toString();
 
+                Spinner soundSpin = (Spinner)findViewById(R.id.soundET);
+//
+                String soundText = soundSpin.getSelectedItem().toString();
+
                 Spinner starSpin = (Spinner)findViewById(R.id.starET);
 //
                 int starText = Integer.parseInt(starSpin.getSelectedItem().toString());
@@ -161,7 +162,7 @@ public class CreateActivity extends AppCompatActivity {
                         woodSpinInt = 0;
                 }
 
-                helper.addItem(mTextBrandEdit,mTextModelEdit,mTextFinishEdit,woodSpinInt,mTextCaliber,mTextSerial,typeText,starText,mCurrentPhotoPath);
+                helper.addItem(mTextBrandEdit,mTextModelEdit,mTextFinishEdit,woodSpinInt,mTextCaliber,mTextSerial,typeText,starText,mCurrentPhotoPath,soundText);
 
                 Intent i = new Intent(CreateActivity.this, MainActivity.class);
 

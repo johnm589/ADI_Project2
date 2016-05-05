@@ -27,8 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_ITEM_TYPE = "TYPE";
     public static final String COL_ITEM_STAR = "STAR";
     public static final String COL_ITEM_PICTURE = "PICTURE";
+    public static final String COL_ITEM_SOUND = "SOUND";
 
-    public static final String[] GUN_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER,COL_ITEM_TYPE};
+    public static final String[] GUN_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER,COL_ITEM_TYPE, COL_ITEM_SOUND};
 
     public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_TYPE,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER};
 
@@ -45,6 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COL_ITEM_SERIAL + " TEXT, " +
                     COL_ITEM_TYPE + " TEXT, " +
                     COL_ITEM_STAR + " INTEGER, "+
+                    COL_ITEM_SOUND + " TEXT, "+
                     COL_ITEM_PICTURE + " TEXT )";
 
     private static DatabaseHelper mInstance;
@@ -67,17 +69,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_GUN_LIST_TABLE);
 
-        insert(db, 1, "Colt", "1911", "Blued", 1, ".45", "12345", "pistol", 3, "colt");
-        insert(db, 2, "Smith and Wesson", "686", "Chrome", 0, ".357", "12345", "revolver", 5, "six86");
-        insert(db, 3, "Mossberg", "500", "Blued", 1, "12 Ga", "12345", "shotgun", 4, "mossberg500");
-        insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "winchester94");
-        insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "m9");
-        insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "mandp");
-        insert(db, 7, "E11", "Blaster", "Blued", 0, "Laser", "12345", "rifle", 2, "e11");
-        insert(db, 8, "Doom", "BFG", "Blued", 0, "Laser", "12345", "shotgun", 3, "bfg");
-        insert(db, 9, "Hi-Point", "C9", "Blued", 0, "9mm", "12345", "pistol", 1, "hiPoint");
-        insert(db, 10, "Mini", "Gun", "Blued", 0, "7.62 X 51 Nato", "12345", "rifle", 2, "mini");
-        insert(db, 11, "Colt", "Python", "Blued", 1, ".357 Magnum", "12345", "revolver", 2, "python");
+        insert(db, 1, "Colt", "1911", "Blued", 1, ".45", "12345", "pistol", 3, "colt", "pistol");
+        insert(db, 2, "Smith and Wesson", "686", "Chrome", 0, ".357", "12345", "revolver", 5, "six86", "revolver");
+        insert(db, 3, "Mossberg", "500", "Blued", 1, "12 Ga", "12345", "shotgun", 4, "mossberg500", "shotgun");
+        insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "winchester94","rifle");
+        insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "m9", "pistol");
+        insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "mandp", "pistol");
+        insert(db, 7, "E11", "Blaster", "Blued", 0, "Laser", "12345", "rifle", 2, "e11", "pew");
+        insert(db, 8, "Doom", "BFG", "Blued", 0, "Laser", "12345", "shotgun", 3, "bfg", "pew");
+        insert(db, 9, "Hi-Point", "C9", "Blued", 0, "9mm", "12345", "pistol", 1, "hiPoint", "pistol");
+        insert(db, 10, "Mini", "Gun", "Blued", 0, "7.62 X 51 Nato", "12345", "rifle", 2, "mini", "rifle");
+        insert(db, 11, "Colt", "Python", "Blued", 1, ".357 Magnum", "12345", "revolver", 2, "python", "revolver");
 
 
 //e11 bfg hiPoint mini python
@@ -90,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public void insert(SQLiteDatabase database, int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
+    public void insert(SQLiteDatabase database, int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture, String sound) {
         // Get a reference to the database
         // create a new content value to store values
         ContentValues values = new ContentValues();
@@ -104,6 +106,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_TYPE, type);
         values.put(COL_ITEM_STAR, star);
         values.put(COL_ITEM_PICTURE, picture);
+        values.put(COL_ITEM_SOUND, sound);
+
 
         database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
@@ -121,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public long addItem(String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
+    public long addItem(String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture, String sound) {
 
         ContentValues values = new ContentValues();
 
@@ -134,6 +138,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_ITEM_STAR, star);
         values.put(COL_ITEM_PICTURE, picture);
         values.put(COL_ITEM_TYPE, type);
+        values.put(COL_ITEM_SOUND, sound);
+
 
         SQLiteDatabase database = getWritableDatabase();
 
@@ -158,6 +164,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             return cursor.getString(cursor.getColumnIndex(COL_ITEM_FINISH));
+        } else {
+            return "No Description Found";
+        }
+    }
+    public String getSoundByID(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_SOUND},
+                COL_ID+" = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_ITEM_SOUND));
         } else {
             return "No Description Found";
         }
@@ -368,8 +392,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
                 GUN_COLUMNS, // b. column names
-                 COL_ITEM_BRAND + " LIKE ?", // c. selections
-                new String[]{"%" + query + "%"}, // d. selections args
+                 COL_ITEM_BRAND + " LIKE ? OR " + COL_ITEM_MODEL + " LIKE ? OR " + COL_ITEM_CALIBER + " LIKE ? ", // c. selections
+                new String[]{"%" + query + "%", "%" + query + "%", "%" + query + "%"}, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by

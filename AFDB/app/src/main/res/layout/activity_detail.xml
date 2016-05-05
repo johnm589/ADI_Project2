@@ -59,6 +59,13 @@
 
     </RelativeLayout>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/soundButton"
+        android:text="Sounds Like"
+        />
+
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -229,9 +236,11 @@
             android:background="@android:color/darker_gray"
             android:entries="@array/star_arrays"
             android:prompt="@string/star_prompt"
+            android:layout_marginLeft="20sp"
             />
     </RelativeLayout>
     <ImageView
+        android:layout_marginTop="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/colt"

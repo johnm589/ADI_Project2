@@ -1,8 +1,10 @@
 package com.example.john.afdb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,6 +44,22 @@ public class DetailActivity extends AppCompatActivity {
                 return 0;
         }
     }
+    public int getSound(String icon){
+        switch(icon){
+            case "pistol":
+                return R.raw.pistol_sound;
+            case "revolver":
+                return R.raw.revolver_sound;
+            case "shotgun":
+                return R.raw.shotgun_sound;
+            case "rifle":
+                return R.raw.rifle_sound;
+            case "pew":
+                return R.raw.laser_sound;
+            default:
+                return 0;
+        }
+    }
     private void setPic(String mCurrentPhotoPath) {
 
         ImageView mImageView = (ImageView)findViewById(R.id.gun_pic);
@@ -58,6 +76,10 @@ public class DetailActivity extends AppCompatActivity {
 
         mImageView.setImageBitmap(bitmap);
     }
+    public static void playSound(Context context, int soundID){
+        MediaPlayer mp = MediaPlayer.create(context, soundID);
+        mp.start();
+    }
 
 
     @Override
@@ -68,6 +90,8 @@ public class DetailActivity extends AppCompatActivity {
         final DatabaseHelper helper = DatabaseHelper.getInstance(DetailActivity.this);
         Button deleteButton = (Button)findViewById(R.id.delete_button);
         Button updateButton = (Button)findViewById(R.id.update_button);
+        Button playButton = (Button)findViewById(R.id.soundButton);
+
 
 
 
@@ -78,6 +102,8 @@ public class DetailActivity extends AppCompatActivity {
             String brand = helper.getBrandById(id);
             String model= helper.getModelById(id);
             String finish = helper.getFinishById(id);
+
+
 
             //this will be a number so convert it
             String wood = helper.getWoodById(id);
@@ -107,6 +133,8 @@ public class DetailActivity extends AppCompatActivity {
             TextView woodTextView = (TextView)findViewById(R.id.wood_text);
             TextView starTextView = (TextView)findViewById(R.id.rating_text);
             ImageView gunImage = (ImageView) findViewById(R.id.gun_pic);
+
+
 
 
         if (i == 0){
@@ -143,7 +171,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Spinner starSpin = (Spinner)findViewById(R.id.update_spinner);
+                Spinner starSpin = (Spinner) findViewById(R.id.update_spinner);
 //
                 int starText = Integer.parseInt(starSpin.getSelectedItem().toString());
 
@@ -155,6 +183,18 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 Toast.makeText(DetailActivity.this, "Updated rating to " + starText + "!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String sound = helper.getSoundByID(id);
+                int soundPlay = getSound(sound);
+
+            playSound(DetailActivity.this, soundPlay);
+
+
             }
         });
 
