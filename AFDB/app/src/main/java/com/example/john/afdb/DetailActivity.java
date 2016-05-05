@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
-//e11 bfg hiPoint mini python
-
     public int getPic(String icon){
         switch(icon){
             case "m9":
@@ -48,17 +46,10 @@ public class DetailActivity extends AppCompatActivity {
 
         ImageView mImageView = (ImageView)findViewById(R.id.gun_pic);
 
-        // Get the dimensions of the View
-        int targetW = mImageView.getWidth();
-        int targetH = mImageView.getHeight();
-
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-
-
-        // Determine how much to scale down the image
 
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
@@ -117,19 +108,7 @@ public class DetailActivity extends AppCompatActivity {
             TextView starTextView = (TextView)findViewById(R.id.rating_text);
             ImageView gunImage = (ImageView) findViewById(R.id.gun_pic);
 
-//            String test = "R.drawable.m9";
-//
-//            int test1 = Integer.parseInt(test);
 
-//            File imgFile = new  File("app/res/drawable/pistol.png");
-
-//            if(imgFile.exists()){
-//
-//                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-//
-//                gunImage.setImageBitmap(myBitmap);
-//
-//            }
         if (i == 0){
             setPic(pic);
         }else {
