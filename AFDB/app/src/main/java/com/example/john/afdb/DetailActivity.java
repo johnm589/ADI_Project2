@@ -1,6 +1,8 @@
 package com.example.john.afdb;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +11,50 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailActivity extends AppCompatActivity {
+
+
+    public int getPic(String icon){
+        switch(icon){
+            case "m9":
+                return R.drawable.m9;
+            case "colt":
+                return R.drawable.colt;
+            case "mandp":
+                return R.drawable.mandp;
+            case "mossberg500":
+                return R.drawable.mossberg_500;
+            case "six86":
+                return R.drawable.six86;
+            case "winchester94":
+                return R.drawable.winchester_94;
+            default:
+                return 0;
+        }
+    }
+    private void setPic(String mCurrentPhotoPath) {
+
+        ImageView mImageView = (ImageView)findViewById(R.id.gun_pic);
+
+        // Get the dimensions of the View
+        int targetW = mImageView.getWidth();
+        int targetH = mImageView.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+
+
+        // Determine how much to scale down the image
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+
+        mImageView.setImageBitmap(bitmap);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +81,7 @@ public class DetailActivity extends AppCompatActivity {
             String type = helper.getTypeById(id);
             String star = helper.getStarById(id);
             String pic  = helper.getPicById(id);
-            int i = helper.getPic(pic);
+            int i = getPic(pic);
 
             TextView finishTextView = (TextView)findViewById(R.id.finish_text);
             finishTextView.setText(finish);
@@ -69,9 +115,11 @@ public class DetailActivity extends AppCompatActivity {
 //                gunImage.setImageBitmap(myBitmap);
 //
 //            }
-
+        if (i == 0){
+            setPic(pic);
+        }else {
             gunImage.setImageResource(i);
-
+        }
 
             starTextView.setText(star);
 

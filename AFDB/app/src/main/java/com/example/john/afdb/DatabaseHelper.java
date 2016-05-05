@@ -310,24 +310,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public int getPic(String icon){
-        switch(icon){
-            case "m9":
-                return R.drawable.m9;
-            case "colt":
-                return R.drawable.colt;
-            case "mandp":
-                return R.drawable.mandp;
-            case "mossberg500":
-                return R.drawable.mossberg_500;
-            case "six86":
-                return R.drawable.six86;
-            case "winchester94":
-                return R.drawable.winchester_94;
-            default:
-                return 0;
-        }
-    }
+
+
+
+
+
 
     public void delete(int id){
         // Get a reference to the database
@@ -344,7 +331,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(GUN_LIST_TABLE_NAME, selection, selectionArgs);
     }
 
-    //use this method to seach all by brand name
+    //use this method to search all by brand name
     public Cursor searchAll(String query){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -359,6 +346,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
 
 
 

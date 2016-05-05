@@ -33,13 +33,7 @@
             android:textColor="#D3D3D3"
             android:text="Brand"
             />
-<ImageView
-    android:layout_width="150sp"
-    android:layout_height="100sp"
-    android:layout_marginLeft="200dp"
-    android:src="@drawable/colt"
-    android:id="@+id/gun_pic"
-    />
+
 
         <TextView
             android:id="@+id/model_text"
@@ -205,6 +199,12 @@
             android:layout_toRightOf="@+id/rating_tag"
             />
     </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/colt"
+        android:id="@+id/gun_pic"
+        />
 
     <Button
         android:layout_width="match_parent"
