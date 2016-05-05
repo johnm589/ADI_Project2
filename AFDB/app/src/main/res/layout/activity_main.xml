@@ -5,12 +5,17 @@
     android:layout_height="match_parent"
     android:background="#292E37"
     tools:context="com.example.john.afdb.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#D3D3D3"
         android:text="Android Firearm Database"
-        android:layout_gravity="top|center"
+        android:layout_gravity="center"
         android:textSize="30sp"
         android:id="@+id/title"
         android:layout_marginTop="10dp"
@@ -20,18 +25,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/createButton"
         android:text="Create New Entry"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="top"
+        android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginLeft="10dp"
         />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:src="@drawable/heart"
-        android:layout_marginTop="60dp"
         />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

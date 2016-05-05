@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -139,6 +140,8 @@ public class DetailActivity extends AppCompatActivity {
 
                 startActivity(i);
                 helper.delete(id);
+
+                Toast.makeText(DetailActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

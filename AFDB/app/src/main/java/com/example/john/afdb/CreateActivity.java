@@ -179,16 +179,22 @@ public class CreateActivity extends AppCompatActivity {
                 Spinner woodSpin = (Spinner)findViewById(R.id.woodET);
 
                 String woodSpinText = woodSpin.getSelectedItem().toString();
-                int woodSpinInt;
-                if (woodSpinText.equals("Yes")){
-                    woodSpinInt = 1;
-                }else{
-                    woodSpinInt = 0;
+
+                    int woodSpinInt;
+
+                    if (woodSpinText.equals("Yes")){
+                        woodSpinInt = 1;
+                    }else{
+                        woodSpinInt = 0;
                 }
 
                 helper.addItem(mTextBrandEdit,mTextModelEdit,mTextFinishEdit,woodSpinInt,mTextCaliber,mTextSerial,typeText,starText,mCurrentPhotoPath);
 
+                Intent i = new Intent(CreateActivity.this, MainActivity.class);
 
+                startActivity(i);
+
+                Toast.makeText(CreateActivity.this, "Entry Created", Toast.LENGTH_SHORT).show();
             }
         });
 
