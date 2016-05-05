@@ -8,11 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
+//e11 bfg hiPoint mini python
 
     public int getPic(String icon){
         switch(icon){
@@ -28,6 +30,16 @@ public class DetailActivity extends AppCompatActivity {
                 return R.drawable.six86;
             case "winchester94":
                 return R.drawable.winchester_94;
+            case "e11":
+                return R.drawable.e11_blaster;
+            case "bfg":
+                return R.drawable.bfg;
+            case "hiPoint":
+                return R.drawable.hi_point;
+            case "mini":
+                return R.drawable.mini_gun;
+            case "python":
+                return R.drawable.python;
             default:
                 return 0;
         }
@@ -64,6 +76,8 @@ public class DetailActivity extends AppCompatActivity {
 
         final DatabaseHelper helper = DatabaseHelper.getInstance(DetailActivity.this);
         Button deleteButton = (Button)findViewById(R.id.delete_button);
+        Button updateButton = (Button)findViewById(R.id.update_button);
+
 
 
         final int id = getIntent().getIntExtra("id",-1);
@@ -143,6 +157,25 @@ public class DetailActivity extends AppCompatActivity {
 
                 Toast.makeText(DetailActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                 return true;
+            }
+        });
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Spinner starSpin = (Spinner)findViewById(R.id.update_spinner);
+//
+                int starText = Integer.parseInt(starSpin.getSelectedItem().toString());
+
+                helper.updateStar(starText, id);
+
+                Intent intent = new Intent(DetailActivity.this, DetailActivity.class);
+
+                intent.putExtra("id", id);
+                startActivity(intent);
+
+                Toast.makeText(DetailActivity.this, "Updated rating to " + starText + "!", Toast.LENGTH_SHORT).show();
             }
         });
 

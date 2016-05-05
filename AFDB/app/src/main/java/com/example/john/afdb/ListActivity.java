@@ -15,13 +15,14 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ListActivity extends AppCompatActivity {
     private ListView mGunListView;
     private CursorAdapter mCursorAdapter;
     private DatabaseHelper mHelper;
-    public String titleText = "Search Results";
+    public String titleText = "Search Result";
     private Cursor cursor;
     private Cursor searchCursor;
 
@@ -35,13 +36,27 @@ public class ListActivity extends AppCompatActivity {
 
         if (!Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
             Intent i = getIntent();
+            if (i.getStringExtra("type") != null){
             titleText = i.getStringExtra("type").toString();
-            cursor = mHelper.getGunByType(titleText);
+
+                cursor = mHelper.getGunByType(titleText);
+
+                Toast.makeText(ListActivity.this, "Showing Type Results", Toast.LENGTH_SHORT).show();
+                ((TextView) findViewById(R.id.title2)).setText(titleText.toString().toUpperCase() + "S");
+
+            }else{
+                titleText = i.getStringExtra("star").toString();
+
+                cursor = mHelper.getGunByStar(titleText);
+
+                Toast.makeText(ListActivity.this, "Showing Star Results", Toast.LENGTH_SHORT).show();
+                ((TextView) findViewById(R.id.title2)).setText(titleText.toString().toUpperCase() + " Stars");
+
+            }
         }
 
         handleIntent(getIntent());
 
-        ((TextView) findViewById(R.id.title2)).setText(titleText.toString().toUpperCase() + "S");
 
 
         final Cursor whichCursor = null == cursor ? searchCursor : cursor;
@@ -50,13 +65,18 @@ public class ListActivity extends AppCompatActivity {
 
         mGunListView.setAdapter(mCursorAdapter);
 
-
         mGunListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
                 Intent intent = new Intent(ListActivity.this, DetailActivity.class);
-                whichCursor.moveToPosition(position);
-                intent.putExtra("id", whichCursor.getInt(whichCursor.getColumnIndex(DatabaseHelper.COL_ID)));
+
+
+                Cursor cursor = mCursorAdapter.getCursor();
+                cursor.moveToPosition(position);
+                intent.putExtra("id", cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_ID)));
                 startActivity(intent);
             }
         });
@@ -65,7 +85,6 @@ public class ListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
-
 // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);

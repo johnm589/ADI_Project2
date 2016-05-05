@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,19 +15,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
 public class CreateActivity extends AppCompatActivity {
-
-    public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
 
     String mCurrentPhotoPath;
 
@@ -100,13 +90,7 @@ public class CreateActivity extends AppCompatActivity {
 
         mImageView.setImageBitmap(bitmap);
     }
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -115,19 +99,12 @@ public class CreateActivity extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
         final DatabaseHelper helper = DatabaseHelper.getInstance(CreateActivity.this);
-
-
-
-
-        Spinner starEdit = (Spinner)findViewById(R.id.starET);
 
 
         Button picButton = (Button)findViewById(R.id.pic);
@@ -142,8 +119,6 @@ public class CreateActivity extends AppCompatActivity {
 
                 dispatchTakePictureIntent();
 
-
-
             }
         });
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -157,8 +132,6 @@ public class CreateActivity extends AppCompatActivity {
 
                 EditText finishEdit = (EditText)findViewById(R.id.finishET);
                  String mTextFinishEdit = finishEdit.getText().toString();
-
-
 
                 EditText caliberEdit = (EditText)findViewById(R.id.caliberET);
                  String mTextCaliber = caliberEdit.getText().toString();

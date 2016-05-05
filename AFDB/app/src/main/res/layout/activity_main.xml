@@ -21,19 +21,117 @@
         android:layout_marginTop="10dp"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/createButton"
         android:text="Create New Entry"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
         />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:src="@drawable/heart"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="150sp"
         />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Search Options:"
+            android:layout_marginTop="50sp"
+            android:textColor="#D3D3D3"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="82dp"
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Pistol"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/onestar"
+            android:clickable="true"
+            android:id="@+id/oneStar"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Pistol"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/twostar"
+            android:clickable="true"
+            android:id="@+id/twostar"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Revolver"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:src="@drawable/threestar"
+            android:layout_marginRight="2dp"
+            android:clickable="true"
+            android:id="@+id/threeStar"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Shotgun"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/fourstar"
+            android:clickable="true"
+            android:id="@+id/fourStar"
+
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Rifle"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/fivestar"
+            android:clickable="true"
+            android:id="@+id/fiveStar"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +169,6 @@
             android:layout_marginRight="1dp"
             android:clickable="true"
             android:id="@+id/revolver"
-
             />
         <ImageView
             android:layout_width="match_parent"

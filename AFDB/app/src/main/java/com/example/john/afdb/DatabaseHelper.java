@@ -32,10 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_TYPE,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_CALIBER};
 
-//    public static final String[] EXAMPLE_COLUMNS = {COL_ID,COL_ITEM_BRAND,COL_ITEM_MODEL,COL_ITEM_FINISH,COL_ITEM_WOOD,COL_ITEM_CALIBER,COL_ITEM_SERIAL,COL_ITEM_TYPE,COL_ITEM_STAR,COL_ITEM_PICTURE};
-    //"CREATE TABLE guns ( id INTEGER PRIMARY KEY, brand TEXT, model TEXT, finish TEXT, wood INTEGER,
-    // caliber TEXT, serial TEXT, type TEXT, star INTEGER, picInt INTEGER, picText TEXT )";
-
 
     private static final String CREATE_GUN_LIST_TABLE =
             "CREATE TABLE " + GUN_LIST_TABLE_NAME +
@@ -66,18 +62,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //COL_ITEM_BRAND  COL_ITEM_MODEL  + COL_ITEM_FINISH + COL_ITEM_WOOD + COL_ITEM_CALIBER + COL_ITEM_SERIAL + COL_ITEM_TYPE  + COL_ITEM_STAR  + COL_ITEM_PICTURE ;
 
 
         db.execSQL(CREATE_GUN_LIST_TABLE);
 
-        insert(db, 1, "Colt", "1911", "Chrome", 0, ".45", "12345", "pistol", 3, "colt");
-        insert(db, 2, "Smith and Wesson", "686", "Chrome", 1, ".357", "12345", "revolver", 5, "six86");
-        insert(db, 3, "Mossberg", "500", "Blued", 0, "12 Ga", "12345", "shotgun", 4, "mossberg500");
+        insert(db, 1, "Colt", "1911", "Blued", 1, ".45", "12345", "pistol", 3, "colt");
+        insert(db, 2, "Smith and Wesson", "686", "Chrome", 0, ".357", "12345", "revolver", 5, "six86");
+        insert(db, 3, "Mossberg", "500", "Blued", 1, "12 Ga", "12345", "shotgun", 4, "mossberg500");
         insert(db, 4, "Winchester", "Lever", "blued", 1, "30-30", "12345", "rifle", 4, "winchester94");
         insert(db, 5, "Beretta", "M9", "Blued", 0, "9mm", "12345", "pistol", 4, "m9");
         insert(db, 6, "Smith and Wesson", "M&P 9", "Blued", 0, "9mm", "12345", "pistol", 4, "mandp");
-    }
+        insert(db, 7, "E11", "Blaster", "Blued", 0, "Laser", "12345", "rifle", 2, "e11");
+        insert(db, 8, "Doom", "BFG", "Blued", 0, "Laser", "12345", "shotgun", 3, "bfg");
+        insert(db, 9, "Hi-Point", "C9", "Blued", 0, "9mm", "12345", "pistol", 1, "hiPoint");
+        insert(db, 10, "Mini", "Gun", "Blued", 0, "7.62 X 51 Nato", "12345", "rifle", 2, "mini");
+        insert(db, 11, "Colt", "Python", "Blued", 1, ".357 Magnum", "12345", "revolver", 2, "python");
 
+
+//e11 bfg hiPoint mini python
+
+
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + GUN_LIST_TABLE_NAME);
@@ -86,9 +92,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void insert(SQLiteDatabase database, int id, String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
         // Get a reference to the database
-//        SQLiteDatabase database = getWritableDatabase();
-
-
         // create a new content value to store values
         ContentValues values = new ContentValues();
         values.put(COL_ID, id);
@@ -104,7 +107,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         database.insert(GUN_LIST_TABLE_NAME, null, values);
     }
-//
+
+
+    public boolean updateStar(int star, int id) {
+
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues args = new ContentValues();
+
+        args.put(COL_ITEM_STAR, star);
+
+        return database.update(GUN_LIST_TABLE_NAME, args, COL_ID + "=" + id, null) > 0;
+    }
+
 
     public long addItem(String brand, String model, String finish, int wood, String caliber, String serial, String type, int star, String picture) {
 
@@ -129,8 +144,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnId;
     }
 
-
-
     public String getFinishById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -149,6 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getCaliberById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -186,6 +200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getWoodById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -204,6 +219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getTypeById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -222,6 +238,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getStarById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -240,6 +257,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getBrandById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -258,6 +276,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public Cursor getGunByType(String query){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -273,6 +292,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public Cursor getGunByStar(String query){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(GUN_LIST_TABLE_NAME, // a. table
+                GUN_COLUMNS, // b. column names
+                COL_ITEM_STAR + " LIKE ?", // c. selections
+                new String[]{ query }, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
+    }
+
     public String getModelById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -291,6 +327,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
+
     public String getPicById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -309,12 +346,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "No Description Found";
         }
     }
-
-
-
-
-
-
 
     public void delete(int id){
         // Get a reference to the database

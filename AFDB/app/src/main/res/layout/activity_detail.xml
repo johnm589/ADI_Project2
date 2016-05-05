@@ -198,6 +198,38 @@
             android:text="Test"
             android:layout_toRightOf="@+id/rating_tag"
             />
+        <TextView
+            android:id="@+id/update_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#D3D3D3"
+            android:text="Update Rating: "
+            android:layout_below="@+id/rating_tag"
+            />
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#292E37"
+            android:text="   Update   "
+            android:layout_below="@+id/update_tag"
+            android:background="@android:color/holo_green_light"
+            />
+        <Spinner
+            android:id="@+id/update_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#D3D3D3"
+            android:text="Update Rating:"
+            android:layout_below="@+id/rating_tag"
+            android:layout_toRightOf="@+id/update_tag"
+            android:background="@android:color/darker_gray"
+            android:entries="@array/star_arrays"
+            android:prompt="@string/star_prompt"
+            />
     </RelativeLayout>
     <ImageView
         android:layout_width="wrap_content"

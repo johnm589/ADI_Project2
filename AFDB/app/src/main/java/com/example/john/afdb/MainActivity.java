@@ -26,13 +26,63 @@ public class MainActivity extends AppCompatActivity {
         ImageView rifleButton = (ImageView)findViewById(R.id.rifle);
         ImageView shotgunButton = (ImageView)findViewById(R.id.shotgun);
         Button createButton = (Button)findViewById(R.id.createButton);
+        ImageView fiveStar = (ImageView)findViewById(R.id.fiveStar);
+        ImageView fourStar = (ImageView)findViewById(R.id.fourStar);
+        ImageView threeStar = (ImageView)findViewById(R.id.threeStar);
+        ImageView twoStar = (ImageView)findViewById(R.id.twostar);
+        ImageView oneStar = (ImageView)findViewById(R.id.oneStar);
 
+        fiveStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("star", "5");
+
+                startActivity(i);
+            }
+        });
+        fourStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("star", "4");
+
+                startActivity(i);
+            }
+        });
+        threeStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("star", "3");
+
+                startActivity(i);
+            }
+        });
+        twoStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("star", "2");
+
+                startActivity(i);
+            }
+        });
+        oneStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ListActivity.class);
+                i.putExtra("star", "1");
+
+                startActivity(i);
+            }
+        });
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, CreateActivity.class);
-
                 startActivity(i);
+
             }
         });
         revolverButton.setOnClickListener(new View.OnClickListener() {
@@ -91,20 +141,4 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-//    @Override
-//    protected void onNewIntent(Intent intent) {
-//        handleIntent(intent);
-//    }
-//
-//    private void handleIntent(Intent intent) {
-//
-//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//            String query = intent.getStringExtra(SearchManager.QUERY);
-//            Cursor cursor = DatabaseHelper.getInstance(MainActivity.this).searchAll(query);
-//        }
-//    }
-
-
-
-
 }
