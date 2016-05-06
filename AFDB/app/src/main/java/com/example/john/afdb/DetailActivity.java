@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
+
     public int getPic(String icon){
         switch(icon){
             case "m9":
@@ -76,23 +77,21 @@ public class DetailActivity extends AppCompatActivity {
 
         mImageView.setImageBitmap(bitmap);
     }
-    public static void playSound(Context context, int soundID){
+    private static void playSound(Context context, int soundID){
         MediaPlayer mp = MediaPlayer.create(context, soundID);
         mp.start();
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+
         final DatabaseHelper helper = DatabaseHelper.getInstance(DetailActivity.this);
         Button deleteButton = (Button)findViewById(R.id.delete_button);
         Button updateButton = (Button)findViewById(R.id.update_button);
         Button playButton = (Button)findViewById(R.id.soundButton);
-
-
+        Button bangButton = (Button)findViewById(R.id.bang_button);
 
 
         final int id = getIntent().getIntExtra("id",-1);
@@ -102,8 +101,6 @@ public class DetailActivity extends AppCompatActivity {
             String brand = helper.getBrandById(id);
             String model= helper.getModelById(id);
             String finish = helper.getFinishById(id);
-
-
 
             //this will be a number so convert it
             String wood = helper.getWoodById(id);
@@ -134,9 +131,6 @@ public class DetailActivity extends AppCompatActivity {
             TextView starTextView = (TextView)findViewById(R.id.rating_text);
             ImageView gunImage = (ImageView) findViewById(R.id.gun_pic);
 
-
-
-
         if (i == 0){
             setPic(pic);
         }else {
@@ -150,7 +144,6 @@ public class DetailActivity extends AppCompatActivity {
             }else{
                 woodTextView.setText("Got Wood");
             }
-
         }
 
         deleteButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -197,8 +190,15 @@ public class DetailActivity extends AppCompatActivity {
 
             }
         });
+        bangButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, bangActivity.class);
+                intent.putExtra("id", id);
 
+                startActivity(intent);
+
+            }
+        });
     }
-
-
 }

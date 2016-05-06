@@ -31,6 +31,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+
         mGunListView = (ListView)findViewById(R.id.list_view);
         mHelper = new DatabaseHelper(ListActivity.this);
 

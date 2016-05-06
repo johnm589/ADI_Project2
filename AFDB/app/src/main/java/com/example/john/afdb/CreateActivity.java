@@ -143,11 +143,11 @@ public class CreateActivity extends AppCompatActivity {
                 String typeText = typeSpin.getSelectedItem().toString();
 
                 Spinner soundSpin = (Spinner)findViewById(R.id.soundET);
-//
+
                 String soundText = soundSpin.getSelectedItem().toString();
 
                 Spinner starSpin = (Spinner)findViewById(R.id.starET);
-//
+
                 int starText = Integer.parseInt(starSpin.getSelectedItem().toString());
 
                 Spinner woodSpin = (Spinner)findViewById(R.id.woodET);
