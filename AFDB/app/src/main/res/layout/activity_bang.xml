@@ -16,12 +16,13 @@
         android:textSize="40dp"
         android:id="@+id/home"
         />
-    <Button
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bang"
         android:textSize="40dp"
         android:layout_below="@+id/home"
+        android:id="@+id/bang_image"
         />
 
 
